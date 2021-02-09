@@ -15,7 +15,9 @@ const objToSql = (ob) => {
     let value = ob[key];
 
     if (Object.hasOwnProperty.call(ob, key)) {
-      if (typeof value === 'string' && value.indexOf(' ') >= 0) { value = `'${value}'`; }
+      if (typeof value === 'string' && value.indexOf(' ') >= 0) {
+        value = `'${value}'`;
+      }
       arr.push(`${key}=${value}`);
     }
   }
@@ -23,16 +25,39 @@ const objToSql = (ob) => {
 };
 
 const orm = {
-  selectAll() {
-    
+  selectAll(table, cb) {
+    const queryString = `SELECT * FROM ${table};`;
+    connection.query(queryString, (err, result) => {
+      if (err) { throw err; }
+      cb(result);
+    });
   },
 
-  insertOne() {
+  insertOne(table, cols, vals, cb) {
+    let queryString = `INSERT INTO ${table}`;
 
+    queryString += ` (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)});`;
+
+    console.log(queryString);
+
+    connection.query(queryString, vals, (err, result) => {
+      if (err) { throw err; }
+
+      cb(result);
+    });
   },
 
-  updateOne() {
+  updateOne(table, objColVals, condition, cb) {
+    let queryString = `UPDATE ${table}`;
 
+    queryString += ` SET ${objToSql(objColVals)} WHERE ${condition};`;
+
+    console.log(queryString);
+    connection.query(queryString, (err, result) => {
+      if (err) { throw err; }
+
+      cb(result);
+    });
   }
 };
 
