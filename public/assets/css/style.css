@@ -1,0 +1,19 @@
+h1, h2 {
+    font-family: 'Pompiere';
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
+
+.fas {
+    background-color: goldenrod;
+    color: white;
+    font-size: 20px;
+}
+
+.fas:hover {
+    background: gold;
+    font-size: 22px;
+}

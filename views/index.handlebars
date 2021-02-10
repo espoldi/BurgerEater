@@ -1,30 +1,39 @@
-<h1>Burgers!</h1>
+<h1>Oh My Burgers!</h1>
 
-<h2>Burgers that are not devoured!</h2>
+<div class="container">
+    <div class="row">
 
-<ol>
-  {{#each burgers}}
-  {{#unless devoured}}
-  <li>{{burger_name}}<button id={{burger_name}}>Devour</button></li>
-  {{/unless}}
-  {{/each}}
-</ol>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h2>Burgers that are not devoured!</h2>
+            <ol>
+                {{#each burgers}}
+                {{#unless devoured}}
+                <li>{{burger_name}}<button class="fas fa-cookie" id="{{burger_name}}"></button></li>
+                {{/unless}}
+                {{/each}}
+            </ol>
+        </div>
 
-<h2>Burgers that are devoured!</h2>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <h2>Burgers that are devoured!</h2>
+            <ol>
+                {{#each burgers}}
+                {{#if devoured}}
+                <li>{{burger_name}}</li>
+                {{/if}}
+                {{/each}}
+            </ol>
+        </div>
 
-<ol>
-  {{#each burgers}}
-  {{#if devoured}}
-  <li>{{burger_name}}</li>
-  {{/if}}
-  {{/each}}
-</ol>
-
+    </div>
+</div>
+<div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="text-align: center;">
 <h2>Add a Burger</h2>
 <form id="create-form">
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-  <button type="submit">Add Burger</button>
+    <div class="form-group">
+        <label for="ca">Burger Name:</label>
+        <input type="text" id="ca" name="name">
+    </div>
+    <button type="submit">Add Burger</button>
 </form>
+</div>
